@@ -19,6 +19,7 @@ jobs:
   jobC:
     runs-on: ubuntu-22.04
     if: ${{ always() && (needs.jobA.result == 'success' || needs.jobA.result == 'failure') }}
+    needs: [jobA, jobB]
     steps:
       - name: Checkout code
         run: |       
