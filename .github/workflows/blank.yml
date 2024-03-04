@@ -2,16 +2,9 @@ name: test
 on:
   workflow_dispatch:
 jobs:
-  jobA:
-    runs-on: ubuntu-22.04
-    steps:
-    - name: Checkout code
-      run: | 
-        echo "a"
 
   jobB:
     runs-on: ubuntu-22.04
-    needs: jobA
     steps:
       - name: Checkout code
         run: | 
@@ -19,7 +12,7 @@ jobs:
   jobC:
     runs-on: ubuntu-22.04
     if: ${{ always() && (needs.jobB.result == 'success' || needs.jobB.result == 'failure') }}
-    needs: [jobA, jobB]
+    needs: [jobB]
     steps:
       - name: Checkout code
         run: |       
