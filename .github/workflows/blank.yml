@@ -1,0 +1,25 @@
+name: test
+on:
+  workflow_dispatch:
+jobs:
+  jobA:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout code
+      run: | 
+        echo "a"
+
+  jobB:
+    runs-on: ubuntu-22.04
+    needs: jobA
+    steps:
+      - name: Checkout code
+        run: | 
+         echo"b"
+  jobC:
+    runs-on: ubuntu-22.04
+    if: always() && (needs.jobA.result == 'success' || needs.jobA.result == 'failure')
+    steps:
+      - name: Checkout code
+        run: |       
+         echo "hello" 
