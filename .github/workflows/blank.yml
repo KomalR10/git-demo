@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout code
         run: | 
-         echo"b"
+         echo "b"
   jobC:
     runs-on: ubuntu-22.04
     if: always() && (needs.jobA.result == 'success' || needs.jobA.result == 'failure')
