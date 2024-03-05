@@ -11,7 +11,7 @@ jobs:
          echo"b"
   jobC:
     runs-on: ubuntu-22.04
-    if: ${{ always() }}
+    if: always() 
     needs: [jobB]
     steps:
       - name: Checkout code
