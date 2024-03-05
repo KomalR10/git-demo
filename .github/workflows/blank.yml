@@ -12,7 +12,7 @@ jobs:
       - run: echo bar
   zoo:
     runs-on: ubuntu-latest
-    if: success()
+    if: always()
     needs:
       - foo
       - bar
