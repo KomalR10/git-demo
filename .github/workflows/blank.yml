@@ -1,19 +1,20 @@
-name: test
-on:
-  workflow_dispatch:
+name: Test
+on: workflow_dispatch
 jobs:
-
-  jobB:
-    runs-on: ubuntu-22.04
+  foo:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        run: | 
-         echo"b"
-  jobC:
-    runs-on: ubuntu-22.04
-    if: always() 
-    needs: [jobB]
+      - run: echo hello
+  bar:
+    runs-on: ubuntu-latest
+    if: "false"
     steps:
-      - name: Checkout code
-        run: |       
-         echo "hello" 
+      - run: echo bar
+  zoo:
+    runs-on: ubuntu-latest
+    if: success()
+    needs:
+      - foo
+      - bar
+    steps:
+      - run: echo hello
