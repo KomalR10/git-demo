@@ -11,7 +11,7 @@ jobs:
          echo"b"
   jobC:
     runs-on: ubuntu-22.04
-    if: ${{ always() && (needs.jobB.result == 'success' || needs.jobB.result == 'failure') }}
+    if: ${{ !cancelled() && (needs.jobB.result == 'success' || needs.jobB.result == 'failure') }}
     needs: [jobB]
     steps:
       - name: Checkout code
